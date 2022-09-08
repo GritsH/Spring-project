@@ -28,5 +28,6 @@ public interface NewsRepository extends CrudRepository<News, Long> {
     @Query("select id, title, summary, content, author, added_at from news where id=?")
     News getById(@Param("id") Integer id);
 
+    @Query("select id, title, summary, content, author, added_at from news")
     List<News> findAll();
 }

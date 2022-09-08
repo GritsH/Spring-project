@@ -32,7 +32,7 @@ public class JdbcConfiguration extends AbstractJdbcConfiguration {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/news_schema");
         dataSource.setUsername("root");
         dataSource.setPassword("qw217746121");
         return dataSource;

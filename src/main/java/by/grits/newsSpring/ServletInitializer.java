@@ -10,9 +10,9 @@ public class ServletInitializer extends SpringBootServletInitializer {
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(NewsSpringApplication.class);
 	}
-	@RequestMapping(value = "/")
-	public String hello() {
-		return "Hello World from Tomcat";
-	}
+//	@RequestMapping(value = "/")
+//	public String hello() {
+//		return "Hello World from Tomcat";
+//	}
 
 }
