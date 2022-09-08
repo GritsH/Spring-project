@@ -6,18 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class MainPageController {
+public class NewsDetailsController {
     @Autowired
     private NewsService newsService;
 
-    @GetMapping("/")
-    public String displayAllNews(Model model){
-        List<News> allNews = newsService.getAllNews();
-        model.addAttribute("all_news_list", allNews);
-        return "index";
+    @GetMapping("/news/{id}")
+    public String displayNewsDetailsForUser(@PathVariable String id, Model model) {
+        News news = newsService.getById(Long.parseLong(id));
+        model.addAttribute("detailed_news", news);
+        return "news";
     }
 }

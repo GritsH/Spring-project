@@ -1,12 +1,11 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News - Main page</title>
+    <title>News - details</title>
     <link rel="stylesheet" th:href="@{/css/base.css}">
-    <link rel="stylesheet" th:href="@{/css/news.css}">
     <link rel="stylesheet" th:href="@{/css/news-article.css}">
+    <link rel="stylesheet" th:href="@{/css/news-details.css}">
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
@@ -14,7 +13,7 @@
     <div class="header-logo">
         <img class="header-logo__icon" th:src="@{/img/news.svg}"
              alt="News icon">
-                <a class="header-logo__title" th:href="@{/}">News</a>
+        <!--        <a class="header-logo__title" href="${path}/controller?command=go_to_news_page">News</a>-->
     </div>
     <div class="header-auth">
         <!--        <c:choose>-->
@@ -32,19 +31,15 @@
     </div>
 </header>
 <main class="main">
-    <section class="articles-container">
-        <article class="news-article" th:each="news:${all_news_list}">
-            <a class="news-article__title" th:text="${news.title}" th:href="@{/news/{id}(id=${news.id})}"></a>
-            <p class="news-article__text" th:text="${news.content}">
-            </p>
-            <div class="news-article-date">
-                <img class="news-article-date__img"
-                     th:src="@{/img/calendar.svg}" alt="Date">
-                <p class="news-article-date__text" th:text="${news.addedAt}">
-                </p>
-            </div>
-        </article>
-    </section>
+    <article class="news-article" style="max-height: 100%">
+        <h2 class="news-article__title" th:text="${detailed_news.title}"></h2>
+        <p class="news-article__text" th:text="${detailed_news.content}"></p>
+        <div class="news-article-date">
+            <img class="news-article-date__img"
+                 th:src="@{/img/calendar.svg}" alt="Date">
+            <p class="news-article-date__text" th:text="${detailed_news.addedAt}"></p>
+        </div>
+    </article>
 </main>
 </body>
 </html>

@@ -12,12 +12,12 @@ import java.util.List;
 
 @Repository
 public interface NewsRepository extends CrudRepository<News, Long> {
-    @Query("insert into news(title, summary, content, author, added_at) values(?,?,?,?,?)")
+    @Query("insert into news(title, summary, content, author, added_at) values(:title,:summary,:content,:author,:added_at)")
     void saveNews(@Param("title") String title, @Param("summary") String summary,
                   @Param("content") String content, @Param("author") String author, @Param("added_at") Date addedAt);
 
     @Modifying
-    @Query("update news set title=?, summary=?, content=?, author=? where id=?")
+    @Query("update news set title=:title, summary=:summary, content=:content, author=:author where id=:id")
     void updateNews(@Param("title") String title, @Param("summary") String summary,
                     @Param("content") String content, @Param("id") Integer id);
 
@@ -25,8 +25,8 @@ public interface NewsRepository extends CrudRepository<News, Long> {
     @Query("delete from news where id=?")
     void deleteById(@Param("id") Integer id);
 
-    @Query("select id, title, summary, content, author, added_at from news where id=?")
-    News getById(@Param("id") Integer id);
+    @Query("select id, title, summary, content, author, added_at from news where id=:id")
+    News getById(@Param("id") Long id);
 
     @Query("select id, title, summary, content, author, added_at from news")
     List<News> findAll();
