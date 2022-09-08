@@ -5,8 +5,8 @@ import by.grits.newsSpring.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class DisplayAllNewsCommand implements Command {
-    @Autowired
-    NewsService newsService;
+//    @Autowired
+//    NewsService newsService;
 
     @Override
     public void execute() {
