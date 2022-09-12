@@ -14,13 +14,13 @@
         <form class="card-form" action="#" th:action="@{/login}" th:object="${current_user}" method="post">
             <div class="card-form__item">
                 <label class="card__label" for="emailInput">Email:</label>
-                <input id="emailInput" class="card__input" type="email" name="email" field="*{email}">
+                <input id="emailInput" class="card__input" type="email" name="email" th:field="*{email}">
                 <p id="emailError" class="input-error">Email is invalid</p>
             </div>
             <div class="card-form__item">
                 <label class="card__label" for="password1Input">Password:</label>
                 <input id="password1Input" class="card__input" type="password" name="password"
-                       field="*{password}">
+                       th:field="*{password}">
                 <p id="password1Error" class="input-error">Password is too short</p>
             </div>
             <p id="authError" class="input-error">Authentication failed. Please try again.</p>
