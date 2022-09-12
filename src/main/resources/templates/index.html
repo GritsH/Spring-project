@@ -29,6 +29,21 @@
     </div>
 </header>
 <main class="main">
+    <section class="display-options">
+        <div class="sort">
+            <label for="sortSelect" class="sort__label">
+                Date:
+            </label>
+            <form method="post" action="#" th:action="@{/}" th:method="post" >
+                <select id="sortSelect" class="sort__select" name="sort_type">
+                    <option value="none" disabled selected></option>
+                    <option value="asc">Ascending ↑</option>
+                    <option value="desc">Descending ↓</option>
+                </select>
+                <button type="submit">sort</button>
+            </form>
+        </div>
+    </section>
     <section class="articles-container">
         <article class="news-article" th:each="news:${all_news_list}">
             <a class="news-article__title" th:text="${news.title}" th:href="@{/news/{id}(id=${news.id})}"></a>

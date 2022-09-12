@@ -6,7 +6,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class News {
+public class News implements Comparable<News>{
     @Id
     private Long id;
     @Column("title")
@@ -95,5 +95,10 @@ public class News {
                 ", author='" + author + '\'' +
                 ", addedAt=" + addedAt +
                 '}';
+    }
+
+    @Override
+    public int compareTo(News news) {
+        return getAddedAt().compareTo(news.getAddedAt());
     }
 }
