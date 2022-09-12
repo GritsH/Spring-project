@@ -2,8 +2,10 @@ package by.grits.newsSpring.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class News implements Comparable<News>{
@@ -18,6 +20,7 @@ public class News implements Comparable<News>{
     @Column("author")
     private String author;
     @Column("added_at")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate addedAt;
 
     public News(String title, String summary, String content, String author, LocalDate addedAt) {
@@ -27,6 +30,7 @@ public class News implements Comparable<News>{
         this.author = author;
         this.addedAt = addedAt;
     }
+    public News(){}
 
     public Long getId() {
         return id;

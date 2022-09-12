@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Admin - Add news</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/base.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/news-edit.css}">
+    <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
+</head>
+<body>
+<main class="main">
+    <aside class="side-menu">
+        <div class="side-menu-news">
+            <h2 class="side-menu-news__title">${news}</h2>
+            <ul class="side-menu-actions-list">
+                <li class="side-menu-actions-list__item">
+                    <a class="link" th:href="@{/admin/news}">News list</a>
+                </li>
+                <li class="side-menu-actions-list__item">
+                    <a class="link link_active" th:href="@{/admin/news/add}">Add news</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="admin-body">
+        <section class="admin-body-nav">
+            <a class="admin-body-nav__item" th:href="@{/admin/news}">News</a>
+            <p class="admin-body-nav__item">>></p>
+            <a class="admin-body-nav__item" th:href="@{/admin/news/add}">Add news</a>
+        </section>
+        <form class="admin-body-content" action="#" th:action="@{/admin/news/add}" th:object="${news_to_add}" method="post">
+            <div class="admin-news-view">
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsTitle">
+                        News title
+                    </label>
+                    <input id="newsTitle" class="admin-news-view__input"
+                           type="text" maxlength="100" required name="title"
+                           field="*{title}">
+                </div>
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsDate">
+                        Added at
+                    </label>
+                    <input id="newsDate" class="admin-news-view__input"
+                           type="date" maxlength="10" required name="addedAt"
+                           th:value="*{addedAt}" th:field="*{addedAt}">
+                </div>
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsBrief">
+                        News Summary
+                    </label>
+                    <textarea id="newsBrief" class="admin-news-view__textarea"
+                              maxlength="500" required name="summary"
+                              field="*{summary}"></textarea>
+                </div>
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsContent">
+                        Content
+                    </label>
+                    <textarea id="newsContent" maxlength="2048" required
+                              class="admin-news-view__textarea" name="content"
+                              field="*{content}"></textarea>
+                </div>
+                <input type="hidden" name="news_author" value="admin@gnail.com" th:value="${news_to_add.author}">
+            </div>
+            <section class="admin-body-content__actions">
+                <input type="submit" class="admin-button" value="Save">
+                <a th:href="@{/admin/news}">
+                    <button type="button" class="admin-button">Cancel</button>
+                </a>
+            </section>
+        </form>
+    </section>
+</main>
+<script th:src="@{/js/admin/news-edit.js}"></script>
+</body>
+</html>

@@ -8,10 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
 public interface NewsRepository extends CrudRepository<News, Long> {
+    @Modifying
     @Query("insert into news(title, summary, content, author, added_at) values(:title,:summary,:content,:author,:added_at)")
     void saveNews(@Param("title") String title, @Param("summary") String summary,
                   @Param("content") String content, @Param("author") String author, @Param("added_at") Date addedAt);
