@@ -23,6 +23,11 @@ public class NewsService {
         return newsRepository.findAll();
     }
 
+    public void deleteById(Long id){
+        //Integer idToRemove = Integer.parseInt(String.valueOf(id));
+        newsRepository.deleteById(id);
+    }
+
     public News getById(Long id) {
         return newsRepository.getById(id);
     }

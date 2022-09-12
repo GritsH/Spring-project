@@ -29,7 +29,7 @@
             <p class="admin-body-nav__item">>></p>
             <p class="admin-body-nav__item">View</p>
         </section>
-        <form class="admin-body-content" method="post" action="#">
+        <form class="admin-body-content" action="#" th:action="@{/admin/news/delete/{id}(id=${found_news.id})}" method="post" >
             <div class="admin-news-view">
                 <div class="admin-news-view__fieldset">
                     <label class="admin-news-view__label" for="newsTitle">
