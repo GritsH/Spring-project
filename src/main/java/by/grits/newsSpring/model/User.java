@@ -22,6 +22,7 @@ public class User {
         this.roleType = roleType;
         this.addedAt = addedAt;
     }
+    public User(){}
 
     public String getEmail() {
         return email;
