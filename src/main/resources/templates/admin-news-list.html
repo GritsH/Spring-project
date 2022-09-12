@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News Admin - News list</title>
+    <meta charset="UTF-8">
+    <title>News Management: List</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/base.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/news-list.css}">
+    <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
+</head>
+<body>
+<main class="main">
+    <aside class="side-menu">
+        <div class="side-menu-news">
+            <label class="side-menu-news__title">News</label>
+            <ul class="side-menu-actions-list">
+                <li class="side-menu-actions-list__item">
+                    <a class="link link_active" th:href="@{/admin/news}">News list</a>
+                </li>
+                <li class="side-menu-actions-list__item">
+                    <a class="link" th:href="@{/admin/news/add}">Add news</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="admin-body">
+        <section class="admin-body-nav">
+            <a class="admin-body-nav__item" th:href="@{/admin/news}">News</a>
+            <p class="admin-body-nav__item">>></p>
+            <p class="admin-body-nav__item">News list</p>
+        </section>
+        <form class="admin-body-content" action="#" method="post">
+            <input type="hidden" name="command" value="delete_news">
+            <section class="admin-news-container" th:each="news:${all_news}">
+                    <article class="admin-news">
+                        <div class="admin-news__header">
+                            <label class="admin-news__title" th:text="${news.title}"></label>
+                            <label class="admin-news__date" th:text="${news.addedAt}"></label>
+                        </div>
+                        <p class="admin-news__text" th:text="${news.content}"></p>
+                        <section class="admin-news-actions">
+                            <a class="admin-news-actions__link"
+                               >view</a>
+                            <a class="admin-news-actions__link"
+                               >edit</a>
+                            <input class="admin-news-actions__checkbox"
+                                   type="checkbox" name="checkbox_id" th:value="${news.id}">
+                        </section>
+                    </article>
+            </section>
+            <input id="deleteButton" type="submit" class="admin-button" value="delete several">
+        </form>
+    </section>
+</main>
+<script th:src="@{/js/auth/news-view.js}"></script>
+</body>
+</html>

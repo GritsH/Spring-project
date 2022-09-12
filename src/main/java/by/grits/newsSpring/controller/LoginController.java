@@ -1,5 +1,6 @@
 package by.grits.newsSpring.controller;
 
+import by.grits.newsSpring.model.RoleType;
 import by.grits.newsSpring.model.User;
 import by.grits.newsSpring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,17 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String loginSubmit(@ModelAttribute User user, Model model, HttpSession session){
-        if(userService.findByEmail(user.getEmail()) == null) {
+    public String loginSubmit(@ModelAttribute User user, Model model, HttpSession session) {
+        User foundUser = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
+
+        if (foundUser == null) {
             model.addAttribute("no_user_found");
             return "login";
-        } else if (userService.findByEmailAndPassword(user.getEmail(), user.getPassword()) != null) {
+        } else if (foundUser.getRoleType() == RoleType.ADMIN) {
+            return "redirect:/admin/news";
+        } else if (foundUser.getRoleType() == RoleType.USER) {
             session.setAttribute("current_user", user.getEmail());
-            return "/index";
+            return "index";
         }
         model.addAttribute("wrong_parameters_login", true);
         return "login";
