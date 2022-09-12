@@ -44,7 +44,7 @@
                             <a class="admin-news-actions__link"
                                th:href="@{/admin/news/{id}(id=${news.id})}">view</a>
                             <a class="admin-news-actions__link"
-                               >edit</a>
+                               th:href="@{/admin/edit/{id}(id=${news.id})}">edit</a>
                             <input class="admin-news-actions__checkbox"
                                    type="checkbox" name="checkbox_id" th:value="${news.id}">
                         </section>

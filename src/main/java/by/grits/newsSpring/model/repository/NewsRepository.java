@@ -21,7 +21,7 @@ public interface NewsRepository extends CrudRepository<News, Long> {
     @Modifying
     @Query("update news set title=:title, summary=:summary, content=:content, author=:author where id=:id")
     void updateNews(@Param("title") String title, @Param("summary") String summary,
-                    @Param("content") String content, @Param("id") Integer id);
+                    @Param("content") String content,@Param("author") String author, @Param("id") Integer id);
 
     @Modifying
     @Query("delete from news where id=?")
