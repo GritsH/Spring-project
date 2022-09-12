@@ -37,7 +37,7 @@
                     </label>
                     <input id="newsTitle" class="admin-news-view__input"
                            type="text" maxlength="100" required name="title"
-                           field="*{title}">
+                           th:field="*{title}">
                 </div>
                 <div class="admin-news-view__fieldset">
                     <label class="admin-news-view__label" for="newsDate">
@@ -53,7 +53,7 @@
                     </label>
                     <textarea id="newsBrief" class="admin-news-view__textarea"
                               maxlength="500" required name="summary"
-                              field="*{summary}"></textarea>
+                              th:field="*{summary}"></textarea>
                 </div>
                 <div class="admin-news-view__fieldset">
                     <label class="admin-news-view__label" for="newsContent">
@@ -61,7 +61,7 @@
                     </label>
                     <textarea id="newsContent" maxlength="2048" required
                               class="admin-news-view__textarea" name="content"
-                              field="*{content}"></textarea>
+                              th:field="*{content}"></textarea>
                 </div>
                 <input type="hidden" name="news_author" value="admin@gnail.com" th:value="${news_to_add.author}">
             </div>
