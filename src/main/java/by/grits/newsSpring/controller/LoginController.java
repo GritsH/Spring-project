@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,7 +28,6 @@ public class LoginController {
             model.addAttribute("no_user_found");
             return "login";
         } else if (userService.findByEmailAndPassword(user.getEmail(), user.getPassword()) != null) {
-            //model.addAttribute("current_user", user);
             session.setAttribute("current_user", user.getEmail());
             return "/index";
         }

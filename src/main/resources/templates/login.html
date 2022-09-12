@@ -12,7 +12,6 @@
 <main class="main">
     <section class="card">
         <form class="card-form" action="#" th:action="@{/login}" th:object="${current_user}" method="post">
-<!--            <input type="hidden" name="command" value="login">-->
             <div class="card-form__item">
                 <label class="card__label" for="emailInput">Email:</label>
                 <input id="emailInput" class="card__input" type="email" name="email" field="*{email}">
