@@ -9,6 +9,21 @@
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
+<header class="header">
+    <div class="header-logo">
+        <img class="header-logo__icon" th:src="@{/img/news.svg}"
+             alt="News icon">
+        <a class="header-logo__title" th:href="@{/}">News</a>
+    </div>
+    <div class="header-auth">
+        <a class="header-auth__item" th:text="${session.current_user} ?  ${session.current_user}: 'Log in' "
+           th:href="@{/login}"></a>
+        <a class="header-auth__item" th:text="${session.current_user} ?  'Log out': '' "
+           th:href="@{/logout}">Log Out</a>
+        <a class="header-auth__item" th:href="@{/signup}">Sign Up</a>
+
+    </div>
+</header>
 <main class="main">
     <section class="card">
         <form class="card-form" action="#" th:action="@{/login}" th:object="${current_user}" method="post">

@@ -9,6 +9,12 @@
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
+<header class="header">
+    <a class="header-logo__title" th:href="@{/admin/news}">News Management</a>
+    <section class="locale-links">
+        <a class="link" th:href="@{/logout}">Log out</a>
+    </section>
+</header>
 <main class="main">
     <aside class="side-menu">
         <div class="side-menu-news">

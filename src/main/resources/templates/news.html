@@ -13,20 +13,14 @@
     <div class="header-logo">
         <img class="header-logo__icon" th:src="@{/img/news.svg}"
              alt="News icon">
-                <a class="header-logo__title" th:href="@{/}">News</a>
+        <a class="header-logo__title" th:href="@{/}">News</a>
     </div>
     <div class="header-auth">
-        <!--        <c:choose>-->
-        <!--            <c:when test="${current_role eq 'UNKNOWN'}">-->
-        <!--                <a class="header-auth__item" href="${path}/controller?command=go_to_login_page">Log in</a>-->
-        <!--                <a class="header-auth__item" href="${path}/controller?command=go_to_signup_page">Sign Up</a>-->
-        <!--            </c:when>-->
-        <!--            <c:otherwise>-->
-        <!--                <a class="header-auth__item">Hi, ${current_user_email} | </a>-->
-        <!--                <a class="header-auth__item" href="${path}/controller?command=logout">Log out</a>-->
-        <!--            </c:otherwise>-->
-        <!--        </c:choose>-->
-
+        <a class="header-auth__item" th:text="${session.current_user} ?  ${session.current_user}: 'Log in' "
+           th:href="@{/login}"></a>
+        <a class="header-auth__item" th:text="${session.current_user} ?  'Log out': '' "
+           th:href="@{/logout}">Log Out</a>
+        <a class="header-auth__item" th:href="@{/signup}">Sign Up</a>
 
     </div>
 </header>

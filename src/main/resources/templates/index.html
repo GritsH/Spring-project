@@ -24,6 +24,8 @@
     <div class="header-auth">
         <a class="header-auth__item" th:text="${session.current_user} ?  ${session.current_user}: 'Log in' "
            th:href="@{/login}"></a>
+        <a class="header-auth__item" th:text="${session.current_user} ?  'Log out': '' "
+           th:href="@{/logout}">Log Out</a>
         <a class="header-auth__item" th:href="@{/signup}">Sign Up</a>
 
     </div>
@@ -34,7 +36,7 @@
             <label for="sortSelect" class="sort__label">
                 Date:
             </label>
-            <form method="post" action="#" th:action="@{/}" th:method="post" >
+            <form method="post" action="#" th:action="@{/}" th:method="post">
                 <select id="sortSelect" class="sort__select" name="sort_type">
                     <option value="none" disabled selected></option>
                     <option value="asc">Ascending ↑</option>
