@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>News Admin - News list</title>
@@ -40,21 +40,21 @@
         <form class="admin-body-content" action="#" th:action="@{/admin/news/deleteSeveral}" method="post">
             <input type="hidden" name="command" value="delete_news">
             <section class="admin-news-container" th:each="news:${all_news}">
-                    <article class="admin-news">
-                        <div class="admin-news__header">
-                            <label class="admin-news__title" th:text="${news.title}"></label>
-                            <label class="admin-news__date" th:text="${news.addedAt}"></label>
-                        </div>
-                        <p class="admin-news__text" th:text="${news.content}"></p>
-                        <section class="admin-news-actions">
-                            <a class="admin-news-actions__link"
-                               th:href="@{/admin/news/{id}(id=${news.id})}">view</a>
-                            <a class="admin-news-actions__link"
-                               th:href="@{/admin/edit/{id}(id=${news.id})}">edit</a>
-                            <input class="admin-news-actions__checkbox"
-                                   type="checkbox" name="checkbox_id" th:value="${news.id}">
-                        </section>
-                    </article>
+                <article class="admin-news">
+                    <div class="admin-news__header">
+                        <label class="admin-news__title" th:text="${news.title}"></label>
+                        <label class="admin-news__date" th:text="${news.addedAt}"></label>
+                    </div>
+                    <p class="admin-news__text" th:text="${news.content}"></p>
+                    <section class="admin-news-actions">
+                        <a class="admin-news-actions__link"
+                           th:href="@{/admin/news/{id}(id=${news.id})}">view</a>
+                        <a class="admin-news-actions__link"
+                           th:href="@{/admin/edit/{id}(id=${news.id})}">edit</a>
+                        <input class="admin-news-actions__checkbox"
+                               type="checkbox" name="checkbox_id" th:value="${news.id}">
+                    </section>
+                </article>
             </section>
             <input id="deleteButton" type="submit" class="admin-button" value="delete several">
         </form>

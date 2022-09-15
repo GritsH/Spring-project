@@ -16,7 +16,7 @@ public class EditNewsController {
     private NewsService newsService;
 
     @GetMapping("/admin/edit/{id}")
-    public String editForm(@PathVariable String id, Model model){
+    public String editForm(@PathVariable String id, Model model) {
         News news = newsService.getById(Long.parseLong(id));
         model.addAttribute("news_to_edit", news);
         model.addAttribute("news_author", news.getAuthor());
@@ -24,7 +24,7 @@ public class EditNewsController {
     }
 
     @PostMapping("/admin/edit/{id}")
-    public String editSubmit(Model model, @ModelAttribute News editedNews){
+    public String editSubmit(Model model, @ModelAttribute News editedNews) {
         editedNews.setAuthor((String) model.getAttribute("news_author"));
         newsService.updateNews(editedNews);
         return "redirect:/admin/news";

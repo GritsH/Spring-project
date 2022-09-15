@@ -5,10 +5,8 @@ import by.grits.newsSpring.model.User;
 import by.grits.newsSpring.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.security.SecureRandom;
 import java.time.LocalDate;
 
 @Service
@@ -22,7 +20,7 @@ public class UserService {
         boolean arePasswordsMatch;
         if (foundUser != null) {
             arePasswordsMatch = passwordEncoder.matches(password, foundUser.getPassword());
-            if(arePasswordsMatch){
+            if (arePasswordsMatch) {
                 return foundUser;
             }
         }
@@ -30,11 +28,15 @@ public class UserService {
     }
 
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        User foundUser = userRepository.findByEmail(email);
+        if (foundUser != null) {
+            foundUser.setEmail(email);
+        }
+        return foundUser;
     }
 
     public void saveUser(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
-        userRepository.saveUser(user.getEmail(), encodedPassword, RoleType.USER.toString(), String.valueOf(LocalDate.now()));
+        userRepository.saveUser(user.getEmail(), encodedPassword, RoleType.ROLE_USER.toString(), String.valueOf(LocalDate.now()));
     }
 }

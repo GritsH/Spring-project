@@ -15,13 +15,13 @@ public class AddNewsController {
     private NewsService newsService;
 
     @GetMapping("/admin/news/add")
-    public String addNewsForm(Model model){
+    public String addNewsForm(Model model) {
         model.addAttribute("news_to_add", new News());
         return "admin-add-news";
     }
 
     @PostMapping("/admin/news/add")
-    public String addNewsSubmit(@ModelAttribute News news){
+    public String addNewsSubmit(@ModelAttribute News news) {
         newsService.addNews(news);
         return "redirect:/admin/news";
     }

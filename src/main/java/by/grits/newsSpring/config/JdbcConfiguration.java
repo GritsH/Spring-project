@@ -1,7 +1,5 @@
 package by.grits.newsSpring.config;
 
-import by.grits.newsSpring.model.News;
-import by.grits.newsSpring.model.repository.NewsRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration;

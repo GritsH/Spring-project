@@ -35,7 +35,8 @@
             <p class="admin-body-nav__item">>></p>
             <a class="admin-body-nav__item" th:href="@{/admin/news/add}">Add news</a>
         </section>
-        <form class="admin-body-content" action="#" th:action="@{/admin/news/add}" th:object="${news_to_add}" method="post">
+        <form class="admin-body-content" action="#" th:action="@{/admin/news/add}" th:object="${news_to_add}"
+              method="post">
             <div class="admin-news-view">
                 <div class="admin-news-view__fieldset">
                     <label class="admin-news-view__label" for="newsTitle">

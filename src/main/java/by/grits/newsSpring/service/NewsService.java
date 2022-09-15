@@ -3,7 +3,6 @@ package by.grits.newsSpring.service;
 import by.grits.newsSpring.model.News;
 import by.grits.newsSpring.model.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;

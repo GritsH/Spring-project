@@ -5,10 +5,9 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
-public class News implements Comparable<News>{
+public class News implements Comparable<News> {
     @Id
     private Long id;
     @Column("title")
@@ -30,7 +29,9 @@ public class News implements Comparable<News>{
         this.author = author;
         this.addedAt = addedAt;
     }
-    public News(){}
+
+    public News() {
+    }
 
     public void setId(Long id) {
         this.id = id;

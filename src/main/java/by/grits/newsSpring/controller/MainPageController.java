@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.net.http.HttpRequest;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -20,18 +19,18 @@ public class MainPageController {
     private NewsService newsService;
 
     @GetMapping("/")
-    public String displayAllNews(Model model){
+    public String displayAllNews(Model model) {
         List<News> allNews = newsService.getAllNews();
         model.addAttribute("all_news_list", allNews);
         return "index";
     }
 
     @PostMapping("/")
-    public String displaySortedNews(Model model, @RequestParam(name="sort_type") String value){
+    public String displaySortedNews(Model model, @RequestParam(name = "sort_type") String value) {
         List<News> allNews = newsService.getAllNews();
-        if(Objects.equals(value, "asc")){
+        if (Objects.equals(value, "asc")) {
             Collections.sort(allNews);
-        }else {
+        } else {
             Collections.sort(allNews, Collections.reverseOrder());
         }
         model.addAttribute("all_news_list", allNews);
