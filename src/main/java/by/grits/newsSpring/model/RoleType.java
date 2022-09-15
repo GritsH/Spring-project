@@ -1,7 +1,6 @@
 package by.grits.newsSpring.model;
 
 public enum RoleType {
-    ADMIN,
-    USER,
-    UNKNOWN
+    ROLE_ADMIN,
+    ROLE_USER
 }
