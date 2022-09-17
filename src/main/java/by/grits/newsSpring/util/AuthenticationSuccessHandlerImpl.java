@@ -1,6 +1,5 @@
 package by.grits.newsSpring.util;
 
-import by.grits.newsSpring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
