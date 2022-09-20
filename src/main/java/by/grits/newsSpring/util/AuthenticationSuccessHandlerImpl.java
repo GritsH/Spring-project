@@ -16,11 +16,11 @@ import java.security.Principal;
 @Component
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler {
     @Autowired
-    HttpSession session;
+    private HttpSession session;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String userName = "";
+        String userName;
         if (authentication.getPrincipal() instanceof Principal) {
             userName = ((Principal) authentication.getPrincipal()).getName();
 
