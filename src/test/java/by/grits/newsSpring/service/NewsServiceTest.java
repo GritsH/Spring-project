@@ -9,13 +9,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,7 +21,7 @@ class NewsServiceTest {
     @InjectMocks
     private NewsService newsService;
     @Mock
-    NewsRepository newsRepository;
+    private NewsRepository newsRepository;
 
     @DisplayName("should add news")
     @Test
@@ -31,11 +29,8 @@ class NewsServiceTest {
         News newsToAdd = new News("title", "summary", "content", "author", LocalDate.now());
 
         newsService.addNews(newsToAdd);
-        verify(newsRepository).saveNews(newsToAdd.getTitle(),
-                newsToAdd.getSummary(),
-                newsToAdd.getContent(),
-                newsToAdd.getAuthor(),
-                Date.valueOf(newsToAdd.getAddedAt()));
+
+        verify(newsRepository).save(newsToAdd);
 
         verifyNoMoreInteractions(newsRepository);
     }
@@ -48,6 +43,7 @@ class NewsServiceTest {
         repositoryResponse.add(mockedNews);
 
         when(newsRepository.findAll()).thenReturn(repositoryResponse);
+
         List<News> result = newsService.getAllNews();
 
         assertEquals(mockedNews, result.get(0));
@@ -61,6 +57,7 @@ class NewsServiceTest {
     @Test
     void deleteById() {
         newsService.deleteById(1L);
+
         verify(newsRepository).deleteById(1L);
         verifyNoMoreInteractions(newsRepository);
     }
@@ -68,37 +65,11 @@ class NewsServiceTest {
     @DisplayName("should update news")
     @Test
     void updateNews() {
-        News oldNews = new News("title", "summary", "content", "author", LocalDate.now());
-        oldNews.setId(1L);
+        News newsToUpdate = mock(News.class);
 
-        News updatedNews =  new News(oldNews.getTitle(),
-                oldNews.getSummary(),
-                oldNews.getContent(),
-                oldNews.getAuthor(),
-                oldNews.getAddedAt());
+        newsService.updateNews(newsToUpdate);
 
-        updatedNews.setId(oldNews.getId());
-        updatedNews.setTitle("updated_title");
-
-        newsService.addNews(oldNews);
-        newsService.updateNews(updatedNews);
-
-        assertNotEquals(oldNews.getTitle(), updatedNews.getTitle());
-        assertEquals(oldNews.getId(), updatedNews.getId());
-        assertEquals(oldNews.getSummary(), updatedNews.getSummary());
-        assertEquals(oldNews.getContent(), updatedNews.getContent());
-        assertEquals(oldNews.getAuthor(), updatedNews.getAuthor());
-
-        verify(newsRepository).saveNews(oldNews.getTitle(),
-                oldNews.getSummary(),
-                oldNews.getContent(),
-                oldNews.getAuthor(),
-                Date.valueOf(oldNews.getAddedAt()));
-        verify(newsRepository).updateNews(updatedNews.getTitle(),
-                updatedNews.getSummary(),
-                updatedNews.getContent(),
-                updatedNews.getAuthor(),
-                Integer.parseInt(updatedNews.getId().toString()));
+        verify(newsRepository).save(newsToUpdate);
         verifyNoMoreInteractions(newsRepository);
     }
 
@@ -108,6 +79,7 @@ class NewsServiceTest {
         News mockedNews = mock(News.class);
 
         when(newsRepository.getById(1L)).thenReturn(mockedNews);
+
         News result = newsService.getById(1L);
 
         assertEquals(mockedNews, result);
