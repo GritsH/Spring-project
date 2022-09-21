@@ -31,7 +31,6 @@ class NewsServiceTest {
         newsService.addNews(newsToAdd);
 
         verify(newsRepository).save(newsToAdd);
-
         verifyNoMoreInteractions(newsRepository);
     }
 
