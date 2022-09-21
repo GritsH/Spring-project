@@ -27,7 +27,7 @@ public class SignUpController {
             return "signup";
         }
         model.addAttribute("new_user", user);
-        userService.saveUser(user);
+        userService.addUser(user);
         return "login";
     }
 }

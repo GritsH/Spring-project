@@ -15,18 +15,6 @@ public class UserService {
     private UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 
-    public User findByEmailAndPassword(String email, String password) {
-        User foundUser = findByEmail(email);
-        boolean arePasswordsMatch;
-        if (foundUser != null) {
-            arePasswordsMatch = passwordEncoder.matches(password, foundUser.getPassword());
-            if (arePasswordsMatch) {
-                return foundUser;
-            }
-        }
-        return null;
-    }
-
     public User findByEmail(String email) {
         User foundUser = userRepository.findByEmail(email);
         if (foundUser != null) {
@@ -35,8 +23,9 @@ public class UserService {
         return foundUser;
     }
 
-    public void saveUser(User user) {
+    public void addUser(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
-        userRepository.saveUser(user.getEmail(), encodedPassword, RoleType.ROLE_USER.toString(), String.valueOf(LocalDate.now()));
+        user.setPassword(encodedPassword);
+        userRepository.saveUser(user.getEmail(), user.getPassword(), RoleType.ROLE_USER.toString(), String.valueOf(LocalDate.now()));
     }
 }
