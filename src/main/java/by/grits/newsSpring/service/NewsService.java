@@ -5,7 +5,6 @@ import by.grits.newsSpring.model.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -14,8 +13,7 @@ public class NewsService {
     private NewsRepository newsRepository;
 
     public void addNews(News news) {
-        newsRepository.saveNews(news.getTitle(), news.getSummary(), news.getContent(), news.getAuthor(),
-                Date.valueOf(news.getAddedAt()));
+        newsRepository.save(news);
     }
 
     public List<News> getAllNews() {
@@ -27,7 +25,7 @@ public class NewsService {
     }
 
     public void updateNews(News news) {
-        newsRepository.updateNews(news.getTitle(), news.getSummary(), news.getContent(), news.getAuthor(), Integer.parseInt(news.getId().toString()));
+        newsRepository.save(news);
     }
 
     public News getById(Long id) {
