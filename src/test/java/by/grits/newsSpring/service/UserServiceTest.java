@@ -49,5 +49,6 @@ class UserServiceTest {
                 userToSave.getPassword(),
                 "ROLE_USER",
                 LocalDate.now().toString());
+        verifyNoMoreInteractions(userRepository);
     }
 }
