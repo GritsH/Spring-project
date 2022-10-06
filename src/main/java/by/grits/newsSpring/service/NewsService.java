@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NewsService {
@@ -17,7 +18,7 @@ public class NewsService {
     }
 
     public List<News> getAllNews() {
-        return newsRepository.findAll();
+        return (List<News>) newsRepository.findAll();
     }
 
     public void deleteById(Long id) {
@@ -28,7 +29,7 @@ public class NewsService {
         newsRepository.save(news);
     }
 
-    public News getById(Long id) {
-        return newsRepository.getById(id);
+    public Optional<News> getById(Long id) {
+        return newsRepository.findById(id);
     }
 }

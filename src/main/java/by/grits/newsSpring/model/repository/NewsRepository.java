@@ -10,10 +10,4 @@ import java.util.List;
 
 @Repository
 public interface NewsRepository extends CrudRepository<News, Long> {
-    News save(News news);
-    
-    @Query("select id, title, summary, content, author, added_at from news where id=:id")
-    News getById(@Param("id") Long id);
-
-    List<News> findAll();
 }

@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -77,13 +78,13 @@ class NewsServiceTest {
     void getById() {
         News mockedNews = mock(News.class);
 
-        when(newsRepository.getById(1L)).thenReturn(mockedNews);
+        when(newsRepository.findById(1L)).thenReturn(Optional.of(mockedNews));
 
-        News result = newsService.getById(1L);
+        Optional<News> result = newsService.getById(1L);
 
-        assertEquals(mockedNews, result);
+        assertEquals(mockedNews, result.get());
 
-        verify(newsRepository).getById(1L);
+        verify(newsRepository).findById(1L);
         verifyNoMoreInteractions(newsRepository);
     }
 }

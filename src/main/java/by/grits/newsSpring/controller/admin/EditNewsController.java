@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Optional;
+
 @Controller
 public class EditNewsController {
     @Autowired
@@ -17,9 +19,9 @@ public class EditNewsController {
 
     @GetMapping("/admin/edit/{id}")
     public String editForm(@PathVariable String id, Model model) {
-        News news = newsService.getById(Long.parseLong(id));
-        model.addAttribute("news_to_edit", news);
-        model.addAttribute("news_author", news.getAuthor());
+        Optional<News> news = newsService.getById(Long.parseLong(id));
+        model.addAttribute("news_to_edit", news.get());
+        model.addAttribute("news_author", news.get().getAuthor());
         return "admin-edit-news";
     }
 

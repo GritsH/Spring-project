@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -28,13 +29,13 @@ class UserServiceTest {
     void findByEmail() {
         User user = mock(User.class);
 
-        when(userRepository.findByEmail("email")).thenReturn(user);
+        when(userRepository.findById("email")).thenReturn(Optional.of(user));
 
-        User result = userService.findByEmail("email");
+        Optional<User> result = userService.findByEmail("email");
 
-        assertEquals(user, result);
+        assertEquals(user, result.get());
 
-        verify(userRepository).findByEmail("email");
+        verify(userRepository).findById("email");
         verifyNoMoreInteractions(userRepository);
     }
 
@@ -45,10 +46,7 @@ class UserServiceTest {
 
         userService.addUser(userToSave);
 
-        verify(userRepository).saveUser("email",
-                userToSave.getPassword(),
-                "ROLE_USER",
-                LocalDate.now().toString());
+        verify(userRepository).save(userToSave);
         verifyNoMoreInteractions(userRepository);
     }
 }

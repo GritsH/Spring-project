@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
@@ -17,13 +19,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByEmail(username);
-        if (user == null) {
+        Optional<User> user = userService.findByEmail(username);
+        if (user.isEmpty()) {
             throw new UsernameNotFoundException(username);
         }
-        UserDetails userDetails = org.springframework.security.core.userdetails.User.withUsername(user.getEmail()).
-                password(user.getPassword()).
-                authorities(user.getRoleType().toString()).build();
+        UserDetails userDetails = org.springframework.security.core.userdetails.User.withUsername(user.get().getEmail()).
+                password(user.get().getPassword()).
+                authorities(user.get().getRoleType().toString()).build();
         return userDetails;
     }
 

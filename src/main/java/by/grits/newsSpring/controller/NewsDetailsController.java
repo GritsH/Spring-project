@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Optional;
+
 @Controller
 public class NewsDetailsController {
     @Autowired
@@ -15,7 +17,7 @@ public class NewsDetailsController {
 
     @GetMapping("/news/{id}")
     public String displayNewsDetailsForUser(@PathVariable String id, Model model) {
-        News news = newsService.getById(Long.parseLong(id));
+        Optional<News> news = newsService.getById(Long.parseLong(id));
         model.addAttribute("detailed_news", news);
         return "news";
     }
