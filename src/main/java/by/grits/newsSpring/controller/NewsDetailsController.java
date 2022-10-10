@@ -18,7 +18,7 @@ public class NewsDetailsController {
     @GetMapping("/news/{id}")
     public String displayNewsDetailsForUser(@PathVariable String id, Model model) {
         Optional<News> news = newsService.getById(Long.parseLong(id));
-        model.addAttribute("detailed_news", news);
+        model.addAttribute("detailed_news", news.get());
         return "news";
     }
 }

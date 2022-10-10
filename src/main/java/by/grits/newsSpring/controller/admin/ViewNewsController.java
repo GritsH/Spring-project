@@ -18,7 +18,7 @@ public class ViewNewsController {
     @GetMapping("/admin/news/{id}")
     public String displayDetailedNews(@PathVariable String id, Model model) {
         Optional<News> foundNews = newsService.getById(Long.parseLong(id));
-        model.addAttribute("found_news", foundNews);
+        model.addAttribute("found_news", foundNews.get());
         return "admin-view-news";
     }
 }

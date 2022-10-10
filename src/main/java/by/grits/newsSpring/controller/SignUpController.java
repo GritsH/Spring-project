@@ -22,7 +22,7 @@ public class SignUpController {
 
     @PostMapping("/signup")
     public String signupSubmit(@ModelAttribute User user, Model model) {
-        if (userService.findByEmail(user.getEmail()) != null) {
+        if (userService.findByEmail(user.getEmail()).isPresent()) {
             model.addAttribute("user_exists", true);
             return "signup";
         }
