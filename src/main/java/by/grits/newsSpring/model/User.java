@@ -8,6 +8,9 @@ import java.util.Objects;
 
 public class User {
     @Id
+    private int id;
+
+    @Column("email")
     private String email;
     @Column("user_password")
     private String password;

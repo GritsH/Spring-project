@@ -1,5 +1,6 @@
 package by.grits.newsSpring.controller;
 
+import by.grits.newsSpring.model.RoleType;
 import by.grits.newsSpring.model.User;
 import by.grits.newsSpring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class SignUpController {
             return "signup";
         }
         model.addAttribute("new_user", user);
+        user.setRoleType(RoleType.ROLE_USER);
         userService.addUser(user);
         return "login";
     }

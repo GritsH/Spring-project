@@ -15,7 +15,7 @@ public class UserService {
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 
     public Optional<User> findByEmail(String email) {
-        Optional<User> foundUser = userRepository.findById(email);
+        Optional<User> foundUser = userRepository.findUserByEmail(email);
         foundUser.ifPresent(user -> user.setEmail(email));
         return foundUser;
     }
